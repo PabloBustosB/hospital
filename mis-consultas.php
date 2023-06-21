@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="material-style layout-fixed">
+
 <head>
     <?php include "components/head.html"; ?>
 </head>
+
 <body>
     <div class="page-loader">
         <div class="bg-primary"></div>
@@ -14,13 +16,34 @@
                 <?php include "components/nav-top.html"; ?>
                 <div class="layout-content">
                     <div class="container-fluid flex-grow-1 container-p-y">
-
-                        <!-- TU CONTENIDO -->
-                        <!-- TU CONTENIDO -->
-                        <!-- TU CONTENIDO -->
-                        <!-- TU CONTENIDO -->
-                        <!-- TU CONTENIDO -->
-
+                        <?php
+                        include "controller/cconsultas.php";
+                        $response = getRecetas();
+                        // echo ($res[0]["fecha"]);
+                        ?>
+                        <!-- begin -->
+                        <div class="card">
+                            <div class="card-header">Registro de Recetas Medicas</div>
+                            <table class="table card-table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Recomendacion</th>
+                                        <th>idConsulta</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($response as $value) { ?>
+                                    <tr>
+                                        <th scope="row"><?php echo $value['id']; ?></th>
+                                        <td><?php echo $value['recomendacion']; ?></td>
+                                        <td><?php echo $value['idConsulta']; ?></td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- end -->
                     </div>
                     <?php include "components/footer.html"; ?>
                 </div>

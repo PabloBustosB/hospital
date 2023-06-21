@@ -15,11 +15,33 @@
                 <div class="layout-content">
                     <div class="container-fluid flex-grow-1 container-p-y">
 
-                        <!-- TU CONTENIDO -->
-                        <!-- TU CONTENIDO -->
-                        <!-- TU CONTENIDO -->
-                        <!-- TU CONTENIDO -->
-                        <!-- TU CONTENIDO -->
+                    <?php
+                        include "controller/cconsultas.php";
+                        $response = getRecetas();
+                        // echo ($res[0]["fecha"]);
+                        ?>
+                        <!-- begin -->
+                        <div class="card">
+                            <div class="card-header">Mis consultas</div>
+                            <table class="table card-table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Hora</th>
+                                        <th>Consulta</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($response as $value) { ?>
+                                    <tr>
+                                        <th scope="row"><?php echo $value['id']; ?></th>
+                                        <td><?php echo $value['recomendacion']; ?></td>
+                                        <td><?php echo $value['idconsulta']; ?></td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
                     <?php include "components/footer.html"; ?>
