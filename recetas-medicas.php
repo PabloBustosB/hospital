@@ -17,7 +17,8 @@
 
                     <?php
                         include "controller/cconsultas.php";
-                        $response = getRecetas();
+                        $res = new Controler;
+                        $response = $res->getRecetas();
                         // echo ($res[0]["fecha"]);
                         ?>
                         <!-- begin -->
