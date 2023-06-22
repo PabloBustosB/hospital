@@ -21,17 +21,21 @@
                         <div class="card mb-4">
                             <h6 class="card-header">Agendar una consulta medica</h6>
                             <div class="card-body">
-                                <form>
+                                <form method="GET" action="controller/cconsultas.php">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label class="form-label">Fecha</label>
-                                            <input type="date" id="start" name="trip-start" required pattern="\d{4}-\d{2}-\d{2}" <?php echo "value='".date("Y-m-d" , strtotime("+1 day"))."' min= '".date("Y-m-d", strtotime("+1 day"))."'" ?> max="2023-12-31">
+                                            <input type="date" name="fecha" required pattern="\d{4}-\d{2}-\d{2}" <?php echo "value='" . date("Y-m-d", strtotime("+1 day")) . "' min= '" . date("Y-m-d", strtotime("+1 day")) . "'" ?> max="2023-12-31">
                                             <div class="clearfix"></div>
                                         </div>
+                                        <?php
+                                        include "controller/cconsultas.php";
+                                        $res = new Controler;
+                                        $response = $res->getDoctores();
+                                        ?>
                                         <div class="form-group col-md-6">
                                             <label class="form-label">Hora</label>
-                                            <select class="custom-select">
-                                                <option>Seleccione hora</option>
+                                            <select class="custom-select" name="hora">
                                                 <option>8:00</option>
                                                 <option>8:30</option>
                                                 <option>9:00</option>
@@ -53,14 +57,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Doctor</label>
-                                        <select class="custom-select">
-                                            <option>Seleccione un doctor</option>
-                                            <option>Doctor1</option>
-                                            <option>Doctor2</option>
-                                            <option>Doctor3</option>
-                                        </select>
+                                            <select class="custom-select" name="doctor">
+                                            <?php foreach ($response as $value) { ?>
+                                                <option><?php echo  $value["nombre"]; ?></option>
+                                                <?php }; ?>
+                                            </select>
                                     </div>
-                                    <button type="submit" class="btn btn-xl btn-primary waves-effect">Reservar ficha medica</button>
+                                    <button type="submit" class="btn btn-xl btn-primary waves-effect" name="btn_sacarficha">
+                                        Reservar ficha medica</button>
                                 </form>
                             </div>
                         </div>

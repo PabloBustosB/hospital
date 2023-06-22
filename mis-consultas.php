@@ -2,7 +2,8 @@
 <html lang="en" class="material-style layout-fixed">
 
 <head>
-    <?php include "components/head.html"; ?>
+    <?php 
+    include "components/head.html"; ?>
 </head>
 
 <body>
@@ -19,8 +20,9 @@
                         <?php
                         include "controller/cconsultas.php";
                         $res = new Controler;
-                        $response = $res->getConsultas();
-                        // echo ($res[0]["fecha"]);
+                        $doc = str_replace(" ","%20",$_SESSION['nombre']);
+                        $response = $res->getPacientesporDoctor($doc);
+                        //  echo $_SESSION['nombre'];
                         ?>
                         <!-- begin -->
                         <div class="card">

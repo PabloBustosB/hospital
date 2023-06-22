@@ -13,6 +13,7 @@
     <div class="sidenav-divider mt-0"></div>
 
     <!-- Links -->
+    <?php if($_SESSION['tipo'] == 'Doctor'){?>
     <ul class="sidenav-inner py-1">
         <li class="sidenav-item active">
             <a href="dashboard.php" class="sidenav-link">
@@ -73,16 +74,6 @@
                 </li>
             </ul>
         </li>
-
-        <!-- Layouts -->
-        <li class="sidenav-divider mb-1"></li>
-        <li class="sidenav-header small font-weight-semibold">Paciente ms2</li>
-        <li class="sidenav-item">
-            <a href="ficha-medica.php" class="sidenav-link">
-                <i class="sidenav-icon feather icon-user-plus"></i>
-                <div>Ficha Medica</div>
-            </a>
-        </li>
         <!-- Forms & Tables -->
         <li class="sidenav-divider mb-1"></li>
         <li class="sidenav-header small font-weight-semibold">Pagos ms3</li>
@@ -92,6 +83,17 @@
                 <div>Historial de Pagos</div>
             </a>
         </li>
+        <?php }else{ ?>
+        <!-- Layouts -->
+        <li class="sidenav-divider mb-1"></li>
+        <li class="sidenav-header small font-weight-semibold">Paciente ms2</li>
+        <li class="sidenav-item">
+            <a href="ficha-medica.php" class="sidenav-link">
+                <i class="sidenav-icon feather icon-user-plus"></i>
+                <div>Ficha Medica</div>
+            </a>
+        </li>
+        <?php };?>
     </ul>
 </div>
 <!-- [ Layout sidenav ] End -->

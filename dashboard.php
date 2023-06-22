@@ -2,7 +2,8 @@
 <html lang="en" class="material-style layout-fixed">
 
 <head>
-    <?php include "components/head.html"; ?>
+    <?php 
+    include "components/head.html"; ?>
 </head>
 
 <body>

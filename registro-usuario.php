@@ -3,7 +3,7 @@
 <html lang="en" class="material-style layout-fixed">
 
 <head>
-    <title>Empire | B4+ admin template by Srthemesvilla</title>
+    <title>Registro</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -45,7 +45,6 @@
     <!-- [ content ] Start -->
     <div class="authentication-wrapper authentication-1 px-4">
         <div class="authentication-inner py-5">
-
             <!-- [ Logo ] Start -->
             <div class="d-flex justify-content-center align-items-center">
                 <div class="ui-w-60">
@@ -58,35 +57,35 @@
             <!-- [ Logo ] End -->
 
             <!-- [ Form ] Start -->
-            <form class="my-5">
+            <form class="my-5" action="controller/cregistro.php" method="POST" enctype="multipart/form-data" >
                 <div class="form-group">
-                    <label class="form-label">Your name</label>
-                    <input type="text" class="form-control">
+                    <label class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-control" name="nombre" required>
                     <div class="clearfix"></div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Your email</label>
-                    <input type="text" class="form-control">
+                    <label class="form-label">Tu email</label>
+                    <input type="text" class="form-control" name="email" required>
                     <div class="clearfix"></div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" required>
                     <div class="clearfix"></div>
                 </div>
-                <button type="button" class="btn btn-primary btn-block mt-4">Sign Up</button>
-                <div class="bg-lightest text-muted small p-2 mt-4">
-                    By clicking "Sign Up", you agree to our
-                    <a href="javascript:void(0)">terms of service and privacy policy</a>. We’ll occasionally send you account related emails.
+                <div class="form-group">
+                    <label class="form-label">Carga una foto</label>
+                    <input type="file" name="foto" required>
+                    <div class="clearfix"></div>
                 </div>
+                <input type="submit" value="Registrarme">
             </form>
             <!-- [ Form ] End -->
 
             <div class="text-center text-muted">
-                Already have an account?
-                <a href="pages_authentication_login-v1.html">Sign In</a>
+                Ya tienes una cuenta?
+                <a href="index.php">Ingresar</a>
             </div>
-
         </div>
     </div>
     <!-- [ content ] End -->
@@ -104,7 +103,8 @@
     <script src="assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <!-- Demo -->
-    <script src="assets/js/demo.js"></script><script src="assets/js/analytics.js"></script>
+    <script src="assets/js/demo.js"></script>
+    <script src="assets/js/analytics.js"></script>
 </body>
 
 </html>

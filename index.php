@@ -57,35 +57,29 @@
             <!-- [ Logo ] End -->
 
             <!-- [ Form ] Start -->
-            <form class="my-5" action="home.php" method="post">
+            <form class="my-5" action="controller/clogin.php" method="POST" enctype="multipart/form-data" >
                 <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="text" class="form-control">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username">
                     <div class="clearfix"></div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label d-flex justify-content-between align-items-end">
-                        <span>Password</span>
-                        <a href="pages_authentication_password-reset.html" class="d-block small">Forgot password?</a>
-                    </label>
-                    <input type="password" class="form-control">
+                    <label class="form-label">Carga una foto</label>
+                    <input type="file" name="foto">
                     <div class="clearfix"></div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center m-0">
-                    <label class="custom-control custom-checkbox m-0">
-                        <input type="checkbox" class="custom-control-input">
-                        <span class="custom-control-label">Remember me</span>
-                    </label>
-                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <!-- <button type="submit" class="btn btn-primary" name="btn_login">
+                        Ingresar
+                    </button> -->
+                    <input type="submit" value="Ingresar">
                 </div>
             </form>
             <!-- [ Form ] End -->
-
             <div class="text-center text-muted">
-                Don't have an account yet?
-                <a href="registro-usuario.html">Sign Up</a>
+                No tienes una cuenta?
+                <a href="registro-usuario.php">Registrate</a>
             </div>
-
         </div>
     </div>
     <!-- [ content ] End -->
@@ -103,7 +97,8 @@
     <script src="assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <!-- Demo -->
-    <script src="assets/js/demo.js"></script><script src="assets/js/analytics.js"></script>
+    <script src="assets/js/demo.js"></script>
+    <script src="assets/js/analytics.js"></script>
 </body>
 
 </html>

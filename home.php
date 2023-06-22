@@ -2,7 +2,8 @@
 <html lang="en" class="material-style layout-fixed">
 
 <head>
-    <?php include "components/head.html"; ?>
+    <?php 
+    include "components/head.html"; ?>
 </head>
 
 <body>
@@ -16,22 +17,21 @@
                 <?php include "components/nav-top.html"; ?>
                 <div class="layout-content">
                     <div class="container-fluid flex-grow-1 container-p-y">
-                        DATOS DEL PACIENTE
                         <div class="layout-content">
                             <!-- [ content ] Start -->
                             <div class="container-fluid flex-grow-1 container-p-y">
                                 <div class="row mt-4">
                                     <div class="col-lg-4 col-xl-3">
                                         <div>
-                                            <img src="https://www.egames.news/__export/1685644833705/sites/debate/img/2023/06/01/jon_snow-1.jpg_1902800913.jpg" style="width: 280px;;height:280px;">
+                                            <img src='<?php echo $_SESSION['foto']; ?>' style="width: 280px;;height:280px;">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="media align-items-center mb-4 h4">
                                             <div class="ion ion-ios-person ui-w-60 text-center text-large"></div>
                                             <div class="media-body ml-1">
-                                                Datos del Paciente
-                                                <div class="text-muted text-tiny font-weight-light">#id paciente 777</div>
+                                                Datos del Usuario
+                                                
                                             </div>
                                         </div>
                                         <div class="card mb-4">
@@ -39,22 +39,22 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label class="form-label">Username</label>
-                                                        <input type="text" class="form-control" placeholder="Email" readonly value="Juan777">
+                                                        <input type="text" class="form-control" placeholder="Email" readonly value='<?php echo $_SESSION['usuario']; ?>'>
                                                         <div class="clearfix"></div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="form-label">Nombre Completo</label>
-                                                        <input type="text" class="form-control" placeholder="Email" readonly value="Juan Perez">
+                                                        <input type="text" class="form-control" placeholder="Email" readonly value='<?php echo $_SESSION['nombre']; ?>'>
                                                         <div class="clearfix"></div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="form-label">Correo Electronico</label>
-                                                        <input type="text" class="form-control" placeholder="Password" readonly value="juan@gmail.com">
+                                                        <input type="text" class="form-control" placeholder="Password" readonly value='<?php echo $_SESSION['email']; ?>'>
                                                         <div class="clearfix"></div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="form-label">Tipo de Usuario</label>
-                                                        <input type="text" class="form-control" placeholder="Password" readonly value="Paciente">
+                                                        <input type="text" class="form-control" placeholder="Password" readonly value='<?php echo $_SESSION['tipo']; ?>'>
                                                         <div class="clearfix"></div>
                                                     </div>
                                                 </form>
