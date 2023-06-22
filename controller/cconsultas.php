@@ -72,6 +72,22 @@ class Controler
         return $decode;
     }
 
+    function getInternacion()
+    {
+        $url = $this->endpoint . "/internacion";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        $response = curl_exec($ch);
+        if (curl_errno($ch))
+            echo curl_errno($ch);
+        else
+            $decode = json_decode($response, true);
+
+        curl_close($ch);
+        return $decode;
+    }
+
     function getMedicamentos()
     {
         $url = $this->endpoint . '/kpi1';

@@ -37,11 +37,12 @@
                             ?>
                             <div class="form-group">
                                 <label class="form-label">Sala Disponible</label>
-                                <?php foreach ($response as $value) { ?>
                                 <select class="custom-select" name="idsala">
-                                    <option><?php echo  $value["id"]; ?></option>
+                                    <?php foreach ($response as $value) { ?>
+                                        <option><?php echo  $value["id"]; ?></option>
+                                    <?php }; ?>
                                 </select>
-                                <?php }; ?>
+
                                 <div class="clearfix"></div>
                             </div>
                             <button type="submit" name="reg_internacion" class="btn btn-primary waves-effect">
