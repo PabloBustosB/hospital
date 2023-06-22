@@ -144,6 +144,46 @@ class Controler
         $data = curl_exec($curl);
         curl_close($curl);
     }
+
+    function getSalas()
+    {
+        $url = $this->endpoint . "/sala/libre";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        // curl_setopt($ch, CURLOPT_HEADER, false);
+        $response = curl_exec($ch);
+        if (curl_errno($ch))
+            echo curl_errno($ch);
+        else
+            $decode = json_decode($response, true);
+
+        curl_close($ch);
+        return $decode;
+    }
+
+    function addInternacion($fechaini,$fechafin,$cantdias,$doctor,$idsala,$idconsulta)
+    {
+        $curl = curl_init();
+        $url = $this->endpoint . '/internacion';
+        // echo $url;
+        $fields = array(
+            "fechaini"=> $fechaini,
+            "fechafin"=> $fechafin,
+            "cantdias"=> $cantdias,
+            "doctor"=> $doctor,
+            "idsala"=> $idsala,
+            "idconsulta"=> $idconsulta
+        );
+        $fields_string = json_encode($fields);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, TRUE);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
+        $data = curl_exec($curl);
+        curl_close($curl);
+    }
 }
 
 if (isset($_GET['btn_regConsulta'])) {
@@ -160,5 +200,19 @@ if (isset($_GET['btn_regConsulta'])) {
     if ($_GET['med3']!='' && $_GET['cant3']!='' && $_GET['ind3']!='') {
         $res->addMedicamento($_GET['med3'],$_GET['cant3'],$_GET['ind3'],$idReceta+1);
     }
+    header("Location: http://localhost/hospital_parcial2/mis-consultas.php");
+}
+
+if (isset($_GET['reg_internacion'])) {
+    $res = new Controler;
+    echo $_GET["id"];
+    echo "</br>";   
+    echo $_GET["fecha"];
+    echo "</br>";
+    echo $_GET["idsala"];
+
+    $res = new Controler;
+    $res->addInternacion($_GET["fecha"],null,null,"Ana Contreras",$_GET["idsala"],$_GET["id"]);
+
     header("Location: http://localhost/hospital_parcial2/mis-consultas.php");
 }

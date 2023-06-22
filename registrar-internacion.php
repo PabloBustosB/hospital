@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="material-style layout-fixed">
+
 <head>
     <?php include "components/head.html"; ?>
 </head>
+
 <body>
     <div class="page-loader">
         <div class="bg-primary"></div>
@@ -16,9 +18,37 @@
                     <div class="container-fluid flex-grow-1 container-p-y">
 
                         <!-- TU CONTENIDO -->
-                        <!-- TU CONTENIDO -->
-                        <!-- TU CONTENIDO -->
-                        <!-- TU CONTENIDO -->
+                        <form method="GET" action="controller/cconsultas.php">
+                            <input type="text" class="form-control" name="id" hidden value='<?php echo $_GET["id_inter"] ?>'>
+                            <div class="form-group">
+                                <label class="form-label">Paciente</label>
+                                <input type="text" class="form-control" readonly placeholder="paciente" value='<?php echo rawurldecode($_GET["pac_inter"]); ?>'>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Fecha Inicio</label>
+                                <input type="text" class="form-control" readonly name="fecha" value='<?php echo date("d-m-Y"); ?>'>
+                                <div class="clearfix"></div>
+                            </div>
+                            <?php
+                            include "controller/cconsultas.php";
+                            $res = new Controler;
+                            $response = $res->getSalas();
+                            ?>
+                            <div class="form-group">
+                                <label class="form-label">Sala Disponible</label>
+                                <?php foreach ($response as $value) { ?>
+                                <select class="custom-select" name="idsala">
+                                    <option><?php echo  $value["id"]; ?></option>
+                                </select>
+                                <?php }; ?>
+                                <div class="clearfix"></div>
+                            </div>
+                            <button type="submit" name="reg_internacion" class="btn btn-primary waves-effect">
+                                Registrar Internacion
+                            </button>
+                            <!-- TU CONTENIDO -->
+                        </form>
                         <!-- TU CONTENIDO -->
 
                     </div>
