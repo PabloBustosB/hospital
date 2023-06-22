@@ -327,15 +327,16 @@ if (isset($_GET['btn_regConsulta'])) {
     $res = new Controler;
     $res->addConsulta($_GET['id'], $_GET['diagnostico']);
     $res->addReceta($_GET['id'], $_GET['recomend']);
-    $idReceta = intval($res->getRecetasCantidad());
+    $cantidad = $res->getRecetasCantidad();
+    $idReceta = intval($cantidad[0]["cantidad"]);
     if ($_GET['med1'] != '' && $_GET['cant1'] != '' && $_GET['ind1'] != '') {
-        $res->addMedicamento($_GET['med1'], $_GET['cant1'], $_GET['ind1'], $idReceta + 1);
+        $res->addMedicamento($_GET['med1'], $_GET['cant1'], $_GET['ind1'], $idReceta);
     }
     if ($_GET['med2'] != '' && $_GET['cant2'] != '' && $_GET['ind2'] != '') {
-        $res->addMedicamento($_GET['med2'], $_GET['cant2'], $_GET['ind2'], $idReceta + 1);
+        $res->addMedicamento($_GET['med2'], $_GET['cant2'], $_GET['ind2'], $idReceta);
     }
     if ($_GET['med3'] != '' && $_GET['cant3'] != '' && $_GET['ind3'] != '') {
-        $res->addMedicamento($_GET['med3'], $_GET['cant3'], $_GET['ind3'], $idReceta + 1);
+        $res->addMedicamento($_GET['med3'], $_GET['cant3'], $_GET['ind3'], $idReceta);
     }
     header("Location: http://localhost/hospital_parcial2/mis-consultas.php");
 }
