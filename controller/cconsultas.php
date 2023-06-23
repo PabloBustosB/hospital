@@ -1,7 +1,7 @@
 <?php
 class Controler
 {
-    var $endpoint = 'http://localhost/msApi';
+    var $endpoint = 'http://23.23.183.202:8080';
     var $endpointmongo = "http://23.23.183.202:3000";
     function getConsultas()
     {
@@ -340,6 +340,7 @@ class Controler
 }
 
 if (isset($_GET['btn_regConsulta'])) {
+    require_once "../config.php";
     $res = new Controler;
     $res->addConsulta($_GET['id'], $_GET['diagnostico']);
     $res->addReceta($_GET['id'], $_GET['recomend']);
@@ -354,10 +355,11 @@ if (isset($_GET['btn_regConsulta'])) {
     if ($_GET['med3'] != '' && $_GET['cant3'] != '' && $_GET['ind3'] != '') {
         $res->addMedicamento($_GET['med3'], $_GET['cant3'], $_GET['ind3'], $idReceta);
     }
-    header("Location: http://localhost/hospital_parcial2/mis-consultas.php");
+    header("Location: ".$ServidorName."/mis-consultas.php");
 }
 
 if (isset($_GET['reg_internacion'])) {
+    require_once "../config.php";
     $res = new Controler;
     // echo $_GET["id"];
     // echo "</br>";   
@@ -366,9 +368,10 @@ if (isset($_GET['reg_internacion'])) {
     // echo $_GET["idsala"];
     $res->addInternacion($_GET["fecha"], null, null, "Ana Contreras", $_GET["idsala"], $_GET["id"]);
 
-    header("Location: http://localhost/hospital_parcial2/mis-consultas.php");
+    header("Location: ".$ServidorName."/mis-consultas.php");
 }
 if (isset($_GET['btn_sacarficha'])) {
+    require_once "../config.php";
     session_start();
     $res = new Controler;
     $newDate = date("d-m-Y", strtotime($_GET["fecha"])); 
@@ -377,7 +380,7 @@ if (isset($_GET['btn_sacarficha'])) {
     echo $_SESSION["nombre"];
     $res->sacar_ficha($_SESSION["nombre"],$_GET["doctor"],$newDate,$_GET["hora"]);
     $res->registrarConsulta($newDate, $_GET["hora"],$_GET["doctor"],$_SESSION["nombre"]);
-    header("Location: http://localhost/hospital_parcial2/mis-consultas.php");
+    header("Location: ".$ServidorName."/home.php");
 }
 
 

@@ -1,4 +1,5 @@
 <?php
+require_once "config.php";
     session_destroy();
-    header("Location: http://localhost/hospital_parcial2/");
+    header("Location: ".$ServidorName."");
 ?>

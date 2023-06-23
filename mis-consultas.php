@@ -3,7 +3,7 @@
 
 <head>
     <?php 
-    include "components/head.html"; ?>
+    include "./components/head.html"; ?>
 </head>
 
 <body>
@@ -12,13 +12,13 @@
     </div>
     <div class="layout-wrapper layout-2">
         <div class="layout-inner">
-            <?php include "components/menu-lateral.html"; ?>
+            <?php include "./components/menu-lateral.html"; ?>
             <div class="layout-container">
-                <?php include "components/nav-top.html"; ?>
+                <?php include "./components/nav-top.html"; ?>
                 <div class="layout-content">
                     <div class="container-fluid flex-grow-1 container-p-y">
                         <?php
-                        include "controller/cconsultas.php";
+                        include "./controller/cconsultas.php";
                         $res = new Controler;
                         $doc = str_replace(" ","%20",$_SESSION['nombre']);
                         $response = $res->getPacientesporDoctor($doc);
@@ -52,12 +52,12 @@
                         </div>
                         <!-- end -->
                     </div>
-                    <?php include "components/footer.html"; ?>
+                    <?php include "./components/footer.html"; ?>
                 </div>
             </div>
         </div>
     </div>
-    <?php include "components/scrips.html"; ?>
+    <?php include "./components/scrips.html"; ?>
 </body>
 
 </html>

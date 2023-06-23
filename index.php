@@ -57,7 +57,7 @@
             <!-- [ Logo ] End -->
 
             <!-- [ Form ] Start -->
-            <form class="my-5" action="controller/clogin.php" method="POST" enctype="multipart/form-data" >
+            <form class="my-5" action="./controller/clogin.php" method="POST" enctype="multipart/form-data" >
                 <div class="form-group">
                     <label class="form-label">Username</label>
                     <input type="text" class="form-control" name="username">

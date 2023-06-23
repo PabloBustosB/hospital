@@ -182,7 +182,7 @@
                         }
 
                         const xhr = new XMLHttpRequest();
-                        xhr.open("GET", "http://localhost/msApi/kpi5");
+                        xhr.open("GET", "http://23.23.183.202:8080/kpi5");
                         xhr.send();
                         xhr.responseType = "json";
                         xhr.onload = () => {
@@ -213,7 +213,7 @@
                         };
 
                         const xhr2 = new XMLHttpRequest();
-                        xhr2.open("GET", "http://localhost/msApi/kpi1");
+                        xhr2.open("GET", "http://23.23.183.202:8080/kpi1");
                         xhr2.send();
                         xhr2.responseType = "json";
                         xhr2.onload = () => {

@@ -1,6 +1,8 @@
 <?php
 session_start();
+require_once '../config.php';
 include "cconsultas.php";
+
 $res = new Controler;
 $path = "imagenes/" . basename($_FILES['foto']['name']);
 if (move_uploaded_file($_FILES['foto']['tmp_name'], $path)) {
@@ -11,7 +13,7 @@ if (move_uploaded_file($_FILES['foto']['tmp_name'], $path)) {
     $_SESSION['usuario'] = $response["usuario"];
     $_SESSION['tipo'] = $response["tipo"];
     $_SESSION['foto'] = $response["imagen"]["secure_url"];
-    header("Location: http://localhost/hospital_parcial2/home.php");
+    header("Location: ".$ServidorName."/home.php");
 } else {
     echo "El archivo no se ha subido correctamente";
 }

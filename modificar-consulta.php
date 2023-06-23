@@ -20,7 +20,7 @@
                         <form action="" method="get">
                             <div class="form-group">
                                 <label class="form-label">Paciente</label>
-                                <input type="text" class="form-control" name="paciente" placeholder="diagnostico" value="Juan Ortiz">
+                                <input type="text" class="form-control" name="paciente" placeholder="paciente a buscar" autofocus>
                                 <div class="clearfix"></div>
                             </div>
                             <button type="submit" name="btn_consultarPaciente" class="btn btn-primary waves-effect">
@@ -37,7 +37,7 @@
                             $pac = str_replace(" ","%20",$_GET["paciente"]);
                             $response = $res->getConsultasPaciente($pac);
                             // var_dump($response[0]);
-                              echo $response[0]["id"];
+                            //   echo $response[0]["id"];
                             ?>
                             <div class="form-group">
                                 <label class="form-label">Paciente</label>
