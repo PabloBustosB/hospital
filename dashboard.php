@@ -93,7 +93,43 @@ if (session_status() === PHP_SESSION_NONE) {
                             this.radio = Math.min(this.canvas.width / 2, this.canvas.height / 2)
                             this.context = this.canvas.getContext("2d");
                             this.valores = valores;
+                            this.colores = colores = [
+                                    {
+                                        color: "green"
+                                    },
+                                    {
+                                        color: "red"
+                                    },
+                                    {
+                                        color: "orange"
+                                    },
+                                    {
+                                        color: "skyblue"
+                                    },
+                                    {
+                                        color: "blue"
+                                    },
+                                    {
+                                        color: "grey"
+                                    },
+                                    {
+                                        color: "brown"
+                                    },
+                                    {
+                                        color: "purple"
+                                    },
+                                    {
+                                        color: "yellow"
+                                    },
+                                    {
+                                        color: "ligtblue"
+                                    },
+                                    {
+                                        color: "sky"
+                                    },
+                                    ];
                             this.tamanoDonut = 0;
+
                             /**
                              * Dibuja un gráfico de pastel
                              */
@@ -105,8 +141,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
                                 // creamos los quesos del pastel
                                 for (var i in this.valores) {
-                                    valor = valores[i]["valor"];
-                                    color = valores[i]["color"];
+                                    valor = valores[i]["cantidad"];
+                                    color = colores[i]["color"];
                                     angulo = 2 * Math.PI * valor / this.total;
 
                                     this.context.fillStyle = color;
@@ -135,7 +171,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                 this.context.font = "bold 12pt Calibri";
                                 this.context.fillStyle = color;
                                 for (var i in this.valores) {
-                                    valor = valores[i]["valor"];
+                                    valor = valores[i]["cantidad"];
                                     angulo = 2 * Math.PI * valor / this.total;
 
                                     // calculamos la posición del texto
@@ -164,7 +200,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             this.getTotal = function() {
                                 var total = 0;
                                 for (var i in this.valores) {
-                                    total += valores[i]["valor"];
+                                    total += valores[i]["cantidad"];
                                 }
                                 return total;
                             }
@@ -177,7 +213,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                 var codigoHTML = "<ul class='leyenda'>";
 
                                 for (var i in this.valores) {
-                                    codigoHTML += "<li><span style='background-color:" + valores[i]["color"] + "'></span>" + valores[i]["nombre"] + "</li>";
+                                    codigoHTML += "<li><span style='background-color:" + colores[i]["color"] + "'></span>" + valores[i]["nombre"] + "</li>";
                                 }
                                 codigoHTML += "</ul>";
                                 document.getElementById(leyendaId).innerHTML = codigoHTML;
@@ -189,23 +225,8 @@ if (session_status() === PHP_SESSION_NONE) {
                         xhr.responseType = "json";
                         xhr.onload = () => {
                             if (xhr.readyState == 4 && xhr.status == 200) {
-                                const data = xhr.response;
-                                // console.log(data[0].nombre);
-                                var valores = {
-                                    "Access": {
-                                        valor: data[0].count,
-                                        color: "blue",
-                                        nombre: data[0].doctor
-                                    },
-                                    "PHP": {
-                                        valor: data[1].count,
-                                        color: "red",
-                                        nombre: data[1].doctor
-                                    }
-                                }
-
-                                // generamos el primer pastel
-                                var pastel = new miPastel("canvas2", 300, 300, valores);
+                                var data = xhr.response;
+                                var pastel = new miPastel("canvas2", 300, 300, data);
                                 pastel.dibujar();
                                 pastel.ponerPorCiento("white");
                                 pastel.ponerLeyenda("leyenda2");
@@ -222,27 +243,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         xhr2.onload = () => {
                             if (xhr2.readyState == 4 && xhr2.status == 200) {
                                 const data2 = xhr2.response;
-                                // console.log(data[0].nombre);
-                                var valores2 = {
-                                    "Access": {
-                                        valor: data2[0].cantidad,
-                                        color: "blue",
-                                        nombre: data2[0].nombre
-                                    },
-                                    "PHP": {
-                                        valor: data2[1].cantidad,
-                                        color: "red",
-                                        nombre: data2[1].nombre
-                                    },
-                                    "Python": {
-                                        valor: data2[2].cantidad,
-                                        color: "green",
-                                        nombre: data2[2].nombre
-                                    }
-                                }
-
-                                // generamos el primer pastel
-                                var pastel2 = new miPastel("canvas1", 300, 300, valores2);
+                                var pastel2 = new miPastel("canvas1", 300, 300, data2);
                                 pastel2.dibujar();
                                 pastel2.ponerPorCiento("white");
                                 pastel2.ponerLeyenda("leyenda1");

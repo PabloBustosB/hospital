@@ -25,7 +25,8 @@ if (session_status() === PHP_SESSION_NONE) {
                         include "./controller/cconsultas.php";
                         $res = new Controler;
                         $doc = str_replace(" ","%20",$_SESSION['nombre']);
-                        $response = $res->getPacientesporDoctor($doc);
+                        $fechaHoy = date("d-m-Y", strtotime("+1 day"));
+                        $response = $res->getPacientesporDoctor($doc,$fechaHoy);
                         //  echo $_SESSION['nombre'];
                         ?>
                         <!-- begin -->

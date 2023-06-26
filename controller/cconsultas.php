@@ -1,4 +1,7 @@
 <?php
+// if (session_status() === PHP_SESSION_NONE) {
+//     session_start();
+// }
 class Controler
 {
     var $endpoint = 'http://23.23.183.202:8080';
@@ -38,9 +41,9 @@ class Controler
         return $decode;
     }
     
-    function getPacientesporDoctor($nombre)
+    function getPacientesporDoctor($nombre,$fecha)
     {
-        $url = $this->endpoint . "/consultas/doc/'" . $nombre . "'";
+        $url = $this->endpoint . "/consultas/doc/'" . $nombre ."'/'".$fecha ."'";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
@@ -372,15 +375,15 @@ if (isset($_GET['reg_internacion'])) {
 }
 if (isset($_GET['btn_sacarficha'])) {
     require_once "../config.php";
-    session_start();
+    // echo $_SESSION["nombre"];
+    // if (session_status() === PHP_SESSION_NONE) {
+    //     session_start();
+    // }
     $res = new Controler;
-    $newDate = date("d-m-Y", strtotime($_GET["fecha"])); 
-    echo $_GET["hora"];
-    echo $_GET["doctor"];
-    echo $_SESSION["nombre"];
-    $res->sacar_ficha($_SESSION["nombre"],$_GET["doctor"],$newDate,$_GET["hora"]);
-    $res->registrarConsulta($newDate, $_GET["hora"],$_GET["doctor"],$_SESSION["nombre"]);
-    header("Location: ".$ServidorName."/home.php");
+        $newDate = date("d-m-Y", strtotime($_GET["fecha"])); 
+        $res->sacar_ficha($_GET["nombre"],$_GET["doctor"],$newDate,$_GET["hora"]);
+        $res->registrarConsulta($newDate, $_GET["hora"],$_GET["doctor"],$_GET["nombre"]);
+        // header("Location: http://localhost:8090/home.php");
+        header("Location: ".$ServidorName."/home.php");
 }
-
-
+?>

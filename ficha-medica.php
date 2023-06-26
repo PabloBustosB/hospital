@@ -27,6 +27,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <div class="card-body">
                                 <form method="GET" action="controller/cconsultas.php">
                                     <div class="form-row">
+                                        <input type="hidden" name="nombre" value="<?php echo $_SESSION['nombre']; ?>"/>
                                         <div class="form-group col-md-6">
                                             <label class="form-label">Fecha</label>
                                             <input type="date" name="fecha" required pattern="\d{4}-\d{2}-\d{2}" <?php echo "value='" . date("Y-m-d", strtotime("+1 day")) . "' min= '" . date("Y-m-d", strtotime("+1 day")) . "'" ?> max="2023-12-31">
