@@ -1,3 +1,7 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}?>
 <!DOCTYPE html>
 <html lang="en" class="material-style layout-fixed">
 
@@ -63,12 +67,6 @@
                                             <?php }; ?>
                                         </select>
                                     </div>
-                                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                        <input type="hidden" name="cmd" value="_s-xclick" />
-                                        <input type="hidden" name="hosted_button_id" value="CH7TX92FVSJ82" />
-                                        <input type="hidden" name="currency_code" value="USD" />
-                                        <input type="image" src="https://www.paypalobjects.com/es_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal es una forma segura y fácil de pagar en línea." alt="Comprar ahora" />
-                                    </form>
                                     <button type="submit" class="btn btn-xl btn-primary waves-effect" name="btn_sacarficha">
                                         Reservar ficha medica</button>
                                 </form>
