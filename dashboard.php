@@ -55,7 +55,7 @@
                 <div class="layout-content">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="card mb-4" >
+                            <div class="card mb-4">
                                 <div class="card-body">
                                     <canvas id="canvas1"></canvas>
                                     <div id="leyenda1" class="leyenda"></div>
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card mb-4" >
+                            <div class="card mb-4">
                                 <div class="card-body">
                                     <canvas id="canvas2"></canvas>
                                     <div id="leyenda2" class="leyenda"></div>
@@ -90,7 +90,6 @@
                             this.context = this.canvas.getContext("2d");
                             this.valores = valores;
                             this.tamanoDonut = 0;
-
                             /**
                              * Dibuja un gráfico de pastel
                              */
@@ -180,7 +179,6 @@
                                 document.getElementById(leyendaId).innerHTML = codigoHTML;
                             }
                         }
-
                         const xhr = new XMLHttpRequest();
                         xhr.open("GET", "http://23.23.183.202:8080/kpi5");
                         xhr.send();
@@ -210,6 +208,7 @@
                             } else {
                                 console.log(`Error: ${xhr.status}`);
                             }
+
                         };
 
                         const xhr2 = new XMLHttpRequest();
@@ -235,11 +234,6 @@
                                         valor: data2[2].cantidad,
                                         color: "green",
                                         nombre: data2[2].nombre
-                                    },
-                                    ".NET": {
-                                        valor: data2[3].cantidad,
-                                        color: "Orange",
-                                        nombre: data2[3].nombre
                                     }
                                 }
 
