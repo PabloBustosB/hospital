@@ -1,7 +1,7 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
-}?>
+} ?>
 <!DOCTYPE html>
 <html lang="en" class="material-style layout-fixed">
 
@@ -57,34 +57,56 @@ if (session_status() === PHP_SESSION_NONE) {
                 <?php include "components/nav-top.html"; ?>
                 <!-- [ Layout content ] Start -->
                 <div class="layout-content">
+                    <div class="container-fluid flex-grow-1 container-p-y">
+                        <form action="" method="get">
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label class="form-label">Fecha Inicio</label>
+                                    <input type="date" name="fechaini" required pattern="\d{4}-\d{2}-\d{2}" value='<?php echo $_SESSION['fechainidash'] ?>' max="2023-12-31">
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label class="form-label">Fecha Final</label>
+                                    <input type="date" name="fechafin" required pattern="\d{4}-\d{2}-\d{2}" value='<?php echo $_SESSION['fechafindash'] ?>' max="2023-12-31">
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <button type="submit" name="btn_filtro" class="btn btn-primary waves-effect">
+                                Aplicar filtro
+                            </button>
+                            <!-- TU CONTENIDO -->
+                        </form>
+                    </div>
+                    <?php
+                    if (isset($_GET['btn_filtro'])) {
+                       
+                        $_SESSION['fechainidash'] = "".$_GET['fechaini']."";
+                        $_SESSION['fechafindash'] = "".$_GET['fechafin']."";
+                        // echo  $_SESSION['fechainidash'];
+                    }
+                    ?>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="card mb-4">
+                            <div class="card mb-4" style="align-items: flex-end;">
                                 <div class="card-body">
+                                    <br>
+                                    <h3>Cantidad de medicamentos mas solicitados</h3>
                                     <canvas id="canvas1"></canvas>
                                     <div id="leyenda1" class="leyenda"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card mb-4">
+                            <div class="card mb-4" style="align-items: center;">
                                 <div class="card-body">
+                                    <br>
+                                    <h3>Cantidad de pacientes atendidos por doctor</h3>
                                     <canvas id="canvas2"></canvas>
                                     <div id="leyenda2" class="leyenda"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- <div style="float:left;margin-right:50px;">
-                        <canvas id="canvas1"></canvas>
-                        <div id="leyenda1" class="leyenda"></div>
-                    </div> -->
-
-                    <!-- <div style="float:left;margin-right:50px;">
-                        <canvas id="canvas2"></canvas>
-                        <div id="leyenda2" class="leyenda"></div>
-                    </div> -->
-
                     <script>
                         var miPastel = function(canvasId, width, height, valores) {
                             this.canvas = document.getElementById(canvasId);;
@@ -93,41 +115,40 @@ if (session_status() === PHP_SESSION_NONE) {
                             this.radio = Math.min(this.canvas.width / 2, this.canvas.height / 2)
                             this.context = this.canvas.getContext("2d");
                             this.valores = valores;
-                            this.colores = colores = [
-                                    {
-                                        color: "green"
-                                    },
-                                    {
-                                        color: "red"
-                                    },
-                                    {
-                                        color: "orange"
-                                    },
-                                    {
-                                        color: "skyblue"
-                                    },
-                                    {
-                                        color: "blue"
-                                    },
-                                    {
-                                        color: "grey"
-                                    },
-                                    {
-                                        color: "brown"
-                                    },
-                                    {
-                                        color: "purple"
-                                    },
-                                    {
-                                        color: "yellow"
-                                    },
-                                    {
-                                        color: "ligtblue"
-                                    },
-                                    {
-                                        color: "sky"
-                                    },
-                                    ];
+                            this.colores = colores = [{
+                                    color: "green"
+                                },
+                                {
+                                    color: "red"
+                                },
+                                {
+                                    color: "orange"
+                                },
+                                {
+                                    color: "skyblue"
+                                },
+                                {
+                                    color: "blue"
+                                },
+                                {
+                                    color: "grey"
+                                },
+                                {
+                                    color: "black"
+                                },
+                                {
+                                    color: "purple"
+                                },
+                                {
+                                    color: "yellow"
+                                },
+                                {
+                                    color: "ligtblue"
+                                },
+                                {
+                                    color: "skygreen"
+                                },
+                            ];
                             this.tamanoDonut = 0;
 
                             /**
@@ -187,7 +208,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
                                     // ponemos los valores
                                     this.context.beginPath();
-                                    this.context.fillText(texto + "%", etiquetaX, etiquetaY);
+                                    this.context.fillText(texto + "% ", etiquetaX, etiquetaY);
                                     this.context.stroke();
 
                                     inicioAngulo += angulo;
@@ -211,16 +232,18 @@ if (session_status() === PHP_SESSION_NONE) {
                              */
                             this.ponerLeyenda = function(leyendaId) {
                                 var codigoHTML = "<ul class='leyenda'>";
-
+                                var ttotal = 0;
                                 for (var i in this.valores) {
-                                    codigoHTML += "<li><span style='background-color:" + colores[i]["color"] + "'></span>" + valores[i]["nombre"] + "</li>";
+                                    codigoHTML += "<li><span style='background-color:" + colores[i]["color"] + "'></span>" + valores[i]["nombre"] + "  =  " + valores[i]["cantidad"] + "</li>";
+                                    ttotal = ttotal + valores[i]["cantidad"];
                                 }
+                                codigoHTML += "<li> TOTAL = " + ttotal + "</li>";
                                 codigoHTML += "</ul>";
                                 document.getElementById(leyendaId).innerHTML = codigoHTML;
                             }
                         }
                         const xhr = new XMLHttpRequest();
-                        xhr.open("GET", "http://23.23.183.202:8080/kpi5");
+                        xhr.open("GET", "http://23.23.183.202:8080/kpi5/'" + '<?php echo $_SESSION["fechainidash"] ?>' + "'/'" + '<?php echo $_SESSION["fechafindash"] ?>' + "'");
                         xhr.send();
                         xhr.responseType = "json";
                         xhr.onload = () => {
@@ -235,9 +258,8 @@ if (session_status() === PHP_SESSION_NONE) {
                             }
 
                         };
-
                         const xhr2 = new XMLHttpRequest();
-                        xhr2.open("GET", "http://23.23.183.202:8080/kpi1");
+                        xhr2.open("GET", "http://23.23.183.202:8080/kpi1/'" + '<?php echo $_SESSION["fechainidash"] ?>' + "'/'" + '<?php echo $_SESSION["fechafindash"] ?>' + "'");
                         xhr2.send();
                         xhr2.responseType = "json";
                         xhr2.onload = () => {

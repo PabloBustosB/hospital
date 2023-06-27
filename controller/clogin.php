@@ -13,6 +13,8 @@ if (move_uploaded_file($_FILES['foto']['tmp_name'], $path)) {
     $_SESSION['usuario'] = $response["usuario"];
     $_SESSION['tipo'] = $response["tipo"];
     $_SESSION['foto'] = $response["imagen"]["secure_url"];
+    $_SESSION['fechainidash'] = '2023-01-01';
+    $_SESSION['fechafindash'] = '2023-12-30';
     header("Location: ".$ServidorName."/home.php");
 } else {
     echo "El archivo no se ha subido correctamente";
